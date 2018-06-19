@@ -1,0 +1,37 @@
+<!--导航栏  -->
+<view class='navigator' style='padding-top:{{STATUS_BAR_HEIGHT}}px;'>
+  <view class='navigator-back' bindtap='goBackHandler'>
+    <image src='/assets/back.svg'></image>
+  </view>
+  <view class='navigator-title'>
+    <text>{{data.title}}</text>
+  </view>
+</view>
+
+<!--顶部图片  -->
+<view class='top_image' bindtap='viewImageHandler' data-url='{{data.img_url}}'>
+  <image src='{{data.img_url}}' mode='widthFix'></image>
+  <view class='top_image_author'>
+    <text>{{data.picture_author}}</text>
+  </view>
+</view>
+
+<view class='body-container'>
+  <!--时间  -->
+  <view class='date'>
+    <text class='day'>{{date[2]}}</text>
+    <text class='other'>{{date[1]}} / {{date[0]}}</text>
+  </view>
+
+  <!--主体内容  -->
+  <view class='body' bindlongtap='copyHandler'>
+    <text>{{data.content}}</text>
+  </view>
+
+  <!--文字作者信息  -->
+  <view class='author'>
+    <view></view>
+    <text>{{data.text_authors}}</text>
+    <view></view>
+  </view>
+</view>

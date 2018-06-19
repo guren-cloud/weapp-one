@@ -1,0 +1,71 @@
+<template name="card">
+  <view class='card-container' hover-class='card-container-hover' data-item='{{item}}' bindtap='viewHandler'>
+    <image src='{{item.img_url}}' class='card-img'></image>
+    <view class='card-box'>
+      <view class='card-title'>
+        <text>{{item.title}}\n{{item.date}}</text>
+      </view>
+      <view class='card-content'>
+        <text>{{item.content}}</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!--header  -->
+<view class='top_header' style='height:44px;padding-top:{{STATUSBAR_HEIGHT}}px;opacity:{{HEADER_OPACITY}};'>
+  <text>ONE</text>
+</view>
+
+<scroll-view
+  class="container"
+  bindscroll="scrollHandler"
+  bindscrolltolower="loadMoreHandler"
+  scroll-y
+  scroll-with-animation
+  scroll-top="{{scrollTOP}}"
+  style='{{SHOW_MORE ? "height:"+HEIGHT+"px;":""}}'>
+  <!--标题  -->
+  <view class='header' style='opacity:{{1-(HEADER_OPACITY*2)}};'>
+    <text class='title'>ONE</text>
+    <text class='subtitle'>复杂世界里, 一个就够了</text>
+  </view>
+  <!--第一个数据  -->
+  <view wx:if="{{!SHOW_MORE && !LOADING}}">
+    <template
+      is="card"
+      data="{{item:datas[0]}}"
+    />
+    <!--显示更多按钮  -->
+    <view class='showmore'>
+      <view class='showmore-btn' bindtap='showMoreHandler'>
+        <image src='/assets/more.svg'></image>
+      </view>
+    </view>
+  </view>
+  <!--数据列表  -->
+  <template
+    wx:if="{{SHOW_MORE && !LOADING}}"
+    is="card"
+    wx:for="{{datas}}"
+    wx:key="{{index}}"
+    data="{{item}}"
+  />
+  <!-- 加载更多  -->
+  <view class='loadMore' wx:if="{{LOADING}}">
+    <image src='/assets/load.svg'></image>
+  </view>
+  <!--底部距离  -->
+  <view class='bottom' wx:else>
+
+  </view>
+</scroll-view>
+
+<!--to-top  -->
+<view
+  class='to_top'
+  style='opacity:{{TO_TOP_OPACITY}};'
+  hover-class='to_top_hover'
+  bindtap='toTopHandler'>
+  <image src='/assets/top.svg'></image>
+</view>
