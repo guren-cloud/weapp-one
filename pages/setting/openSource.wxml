@@ -1,0 +1,54 @@
+<include src="../../libs/weToast/weToast.wxml" />
+
+<view class='background'></view>
+
+<!--导航栏  -->
+<form report-submit bindsubmit='addPushHandler'>
+  <button form-type='submit'>
+    <view class='navigator' style='padding-top:{{STATUSBAR_HEIGHT}}px;'>
+      <!--左边按钮  -->
+      <view class='leftButton' hover-class='hover-class' bindtap='goBackHandler'>
+        <image src='/assets/back.svg'></image>
+      </view>
+      <!--中间标题  -->
+      <view class='title'>
+        <text>开源</text>
+      </view>
+      <!--右边间隙  -->
+    </view>
+  </button>
+</form>
+
+<!-- 主题内容 -->
+<view class='container' style='padding-top: {{STATUSBAR_HEIGHT+44}}px;'>
+  <!--logo  -->
+  <view class='header'>
+    <image src='/assets/logo.svg'></image>
+    <text>复杂的世界里，一个就够了</text>
+  </view>
+  <view class='separator' />
+  <view class='body'>
+    <text>本小程序数据来源于网络开放API接口。如涉及侵权，请及时联系本人。\n代码以及UI素材都已全部进行开源，欢迎您的研究参与与探讨学习！</text>
+  </view>
+
+  <view class='b_title'>
+    <text>项目</text>
+  </view>
+  <view class='b_data' hover-class='hover-class' bindtap='copyHandler' data-cp='https://github.com/safe-dog/one'> 
+    <text>GitHub：<text style='color:#03a9f4;'>https://github.com/safe-dog/one</text></text>
+  </view>
+
+  <view class='b_title'>
+    <text>推送</text>
+  </view>
+  <view class='b_data' hover-class='hover-class' bindtap='copyHandler' data-cp='https://vpush.cloud'>
+    <text>本项目中使用了vPush推送模块。\nvPush，是一款专业高效实用的小程序推送平台。\n官网：<text style="color:#03a9f4">https://vpush.cloud</text></text>
+  </view>
+
+  <view class='b_title'>
+    <text>作者</text>
+  </view>
+  <view class='b_data' hover-class='hover-class' bindtap='copyHandler' data-cp='h01ger'>
+    <text>作者是一名热爱编程，并擅长小程序、APP、网站开发以及UI设计的IT从业者。\n如果您有好的点子想法，或者有不错的项目合作，都欢迎联系我进行交流探讨！\n微信：<text style="color:#03a9f4">h01ger</text>\n邮箱：<text style="color:#03a9f4">u@uyu.us</text></text>
+  </view>
+</view>

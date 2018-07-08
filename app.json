@@ -1,13 +1,15 @@
 {
   "pages": [
     "pages/home/index",
-    "pages/detail/index"
+    "pages/detail/index",
+    "pages/setting/index",
+    "pages/setting/openSource"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "",
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "navigationStyle": "custom"
   }
 }

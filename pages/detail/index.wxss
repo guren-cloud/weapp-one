@@ -1,83 +1,70 @@
-page {
-  background-color: #EEE;
-}
-
-.top_image {
-  display: flex;
-  /* box-shadow: 0 5px 20px -5px rgba(0,0,0,0.50); */
-  background-color: #999;
-  flex-direction: column;
-  width: 100%;
-  height: 250px;
-  position: fixed;
-}
-.top_image > image {
-  width: 100%;
-}
-.top_image_author {
-  margin-top:-30px;
-  z-index:999;
-  height:30px;
-  display:flex;
-  align-items: flex-end;
-  justify-content: center;
-  /* background-image: linear-gradient(-180deg, transparent 0%, rgba(0,0,0,0.5) 100%); */
-}
-.top_image_author > text {
-  color:#FFF;
-  font-size:12px;
-  font-weight:100;
-  /* margin-right:10px; */
-  padding: 2px 5px;
-  margin-bottom: 20px;
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
 .navigator {
-  position: fixed;
-  left: 0;
-  top: 0;
+  background-color: rgba(3, 169, 244, 0);
+  height: 44px;
   width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: row;
+}
+.leftButton {
+  width: 50px;
   height: 44px;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  z-index: 999;
-}
-.navigator-back {
-  height: 100%;
-  display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
-.navigator-back > image {
+.leftButton > image {
+  width: 25px;
   height: 25px;
-  width: 50px;
 }
-
-.navigator-title {
-  flex: 1;
+.title {
+  height: 44px;
   margin-right: 50px;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.navigator-title > text {
+.title > text {
+  font-size: 16px;
   color: #FFF;
-  font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
+.header_image {
+  width: 100%;
+  height: 250px;
+}
+
+.container {
+  width: 100%;
+  margin-top: -64px;
+  left: 0;
+  position: absolute;
+}
 
 .body {
-  padding: 20px;
-}
-.body > text {
-  font-size: 16px;
-  color: #333;
-  font-weight: 300;
+  background-color: #FFF;
+  box-shadow: 0px 5px 20px -5px #DDD;
+  border-radius: 10px;
+  margin: 20px;
 }
 
+.pic_author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-bottom: 1px dashed #EEE;
+}
+.pic_author > text {
+  font-size: 12px;
+  color: #999;
+  font-weight: 100;
+}
 .date {
   display: flex;
   align-items: center;
@@ -101,7 +88,7 @@ page {
 .author {
   padding: 20px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 .author > text {
@@ -109,21 +96,48 @@ page {
   color: #666;
   font-weight: 100;
 }
-.author > view {
-  width: 20px;
-  height: 1px;
-  background-color: #EEE;
-  margin: 0px 5px;
+
+.content {
+  padding: 20px;
+}
+.content > text {
+  font-size: 16px;
+  color: #333;
+  font-weight: 300;
 }
 
-.body-container {
-  top: 240px;
-  position: absolute;
-  border-radius:10px 10px 0px 0px;
-  z-index:99;
-  /* position:relative; */
-  background-color:#FFF;
-  border-top:1px solid #EEE;
-  bottom: 0;
-  width: 100%;
+.action {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgba(238, 238, 238, 0.5);
+  margin: 20px;
+  padding: 20px 0px;
+}
+.action-cell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.cell-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  background-color: #EEE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cell-icon > image {
+  width: 20px;
+  height: 20px;
+}
+.cell-title {}
+.cell-title > text {
+  font-size: 12px;
+  color: #999;
+  margin: 2px;
 }

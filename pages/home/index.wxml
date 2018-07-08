@@ -1,71 +1,83 @@
-<template name="card">
-  <view class='card-container' hover-class='card-container-hover' data-item='{{item}}' bindtap='viewHandler'>
-    <image src='{{item.img_url}}' class='card-img'></image>
-    <view class='card-box'>
-      <view class='card-title'>
-        <text>{{item.title}}\n{{item.date}}</text>
+<!--导航栏  -->
+<form report-submit bindsubmit='addPushHandler'>
+  <button form-type='submit'>
+    <view class='navigator' style='padding-top:{{STATUSBAR_HEIGHT}}px;background-color:rgba(3, 169, 244, {{opacity}});'>
+      <!--左边按钮  -->
+      <view class='leftButton' hover-class='hover-class' bindtap='gotoSetting'>
+        <image src='/assets/setting.svg'></image>
       </view>
-      <view class='card-content'>
-        <text>{{item.content}}</text>
+      <!--中间标题  -->
+      <view class='title'>
+        <text>ONE</text>
       </view>
+      <!--右边间隙  -->
     </view>
-  </view>
-</template>
+  </button>
+</form>
 
-<!--header  -->
-<view class='top_header' style='height:44px;padding-top:{{STATUSBAR_HEIGHT}}px;opacity:{{HEADER_OPACITY}};'>
-  <text>ONE</text>
+<!--加载中  -->
+<view class='loading-container' wx:if="{{LOADING}}">
+  <text class='loading-title'>ONE</text>
 </view>
 
 <scroll-view
-  class="container"
-  bindscroll="scrollHandler"
-  bindscrolltolower="loadMoreHandler"
   scroll-y
+  bindscroll="scrollHandler"
   scroll-with-animation
-  scroll-top="{{scrollTOP}}"
-  style='{{SHOW_MORE ? "height:"+HEIGHT+"px;":""}}'>
-  <!--标题  -->
-  <view class='header' style='opacity:{{1-(HEADER_OPACITY*2)}};'>
-    <text class='title'>ONE</text>
-    <text class='subtitle'>复杂世界里, 一个就够了</text>
+  class="container"
+  wx:else>
+  <!--顶部图片  -->
+  <image src='{{first.img_url}}' class='header_image'></image>
+  <!--顶部文字  -->
+  <view class='header_text'>
+    <text>复杂的世界里，一个就够了</text>
   </view>
-  <!--第一个数据  -->
-  <view wx:if="{{!SHOW_MORE && !LOADING}}">
-    <template
-      is="card"
-      data="{{item:datas[0]}}"
-    />
-    <!--显示更多按钮  -->
-    <view class='showmore'>
-      <view class='showmore-btn' bindtap='showMoreHandler'>
-        <image src='/assets/more.svg'></image>
-      </view>
-    </view>
+  <!--第一张卡片内容  -->
+  <view class='first_card' hover-class='hover-class'>
+    <form report-submit bindsubmit='addPushHandler' data-item='{{first}}'>
+      <button form-type='submit'>
+          <!--vol标题  -->
+          <view class='first_title_box'>
+            <text>{{first.title}}</text>
+          </view>
+          <!--内容  -->
+          <view class='first_content_box'>
+            <text>{{first.content}}</text>
+          </view>
+          <!--作者  -->
+          <view class='first_author_box'>
+            <text>—— {{first.text_authors}}</text>
+          </view>
+      </button>
+    </form>
   </view>
-  <!--数据列表  -->
-  <template
-    wx:if="{{SHOW_MORE && !LOADING}}"
-    is="card"
-    wx:for="{{datas}}"
-    wx:key="{{index}}"
-    data="{{item}}"
-  />
-  <!-- 加载更多  -->
-  <view class='loadMore' wx:if="{{LOADING}}">
-    <image src='/assets/load.svg'></image>
-  </view>
-  <!--底部距离  -->
-  <view class='bottom' wx:else>
 
+  <!--其他内容  -->
+  <view
+    class='other_card'
+    hover-class='hover-class'
+    wx:for="{{data}}"
+    wx:key="{{index}}">
+    <form report-submit bindsubmit='addPushHandler' data-item='{{item}}'>
+      <button form-type='submit'>
+        <!--标题  -->
+        <view class='other_title_box'>
+          <text>{{item.title}}</text>
+        </view>
+        <!--内容  -->
+        <view class='other_content_box'>
+          <text>{{item.content}}</text>
+        </view>
+        <!--作者  -->
+        <view class='other_author_box' wx:if="{{false}}">
+          <text>{{item.text_authors}}</text>
+        </view>
+      </button>
+    </form>
   </view>
+
+  <!--底部内容  -->
+  <navigator url='/pages/setting/openSource' class='footer' hover-class='hover-class'>
+    <text>开源声明</text>
+  </navigator>
 </scroll-view>
-
-<!--to-top  -->
-<view
-  class='to_top'
-  style='opacity:{{TO_TOP_OPACITY}};'
-  hover-class='to_top_hover'
-  bindtap='toTopHandler'>
-  <image src='/assets/top.svg'></image>
-</view>

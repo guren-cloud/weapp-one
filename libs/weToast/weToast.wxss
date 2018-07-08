@@ -1,0 +1,60 @@
+@import "./weIcon.wxss";
+
+.weToast-container {
+  position: fixed;
+  bottom: -100px;
+  max-height: 100px;
+  width: 100%;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+}
+.weToast-box {
+  width: 200px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  background-image: linear-gradient(-135deg, #B4EC51 0%, #429321 100%);
+  box-shadow: 0 5px 10px -5px rgba(0,0,0,0.50);
+  border-radius: 8px;
+}
+.weToast-box-hover {
+  opacity: 0.8;
+}
+.weToast-box-r {
+  flex: 1;
+}
+.weToast-box-l {
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.weToast-title {
+  font-size: 16px;
+  font-weight: 400;
+  color: #FFF;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+.weToast-content {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 20px;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  display: -webkit-box;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}
+.weToast-icon {
+  color: #FFF;
+}

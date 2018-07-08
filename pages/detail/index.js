@@ -1,5 +1,6 @@
 // pages/detail/index.js
 var INFO = wx.getSystemInfoSync();
+var { vPush } = getApp();
 
 Page({
 
@@ -10,7 +11,9 @@ Page({
     data: {},
     date: [],
     _item: '',
-    STATUS_BAR_HEIGHT: INFO.statusBarHeight
+    // 是否是点击分享进来的页面
+    IS_SHARE_PAGE: false,
+    STATUSBAR_HEIGHT: INFO.statusBarHeight
   },
 
   /**
@@ -22,7 +25,8 @@ Page({
     this.setData({
       data: item,
       date: item.date.split(' / '),
-      _item: options.item
+      _item: options.item,
+      IS_SHARE_PAGE: getCurrentPages().length === 1
     })
   },
 
@@ -30,42 +34,42 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
@@ -84,10 +88,16 @@ Page({
   goBackHandler: function () {
     wx.navigateBack({});
   },
+  goHomeHandler: function () {
+    wx.redirectTo({
+      url: '/pages/home/index',
+    })
+  },
   /**
    * 预览图片
    */
   viewImageHandler: function (e) {
+    vPush.add(e);
     var { url } = e.currentTarget.dataset;
     wx.previewImage({
       urls: [url],
@@ -101,5 +111,9 @@ Page({
     wx.setClipboardData({
       data: this.data.data.content,
     })
+  },
+
+  addPushHandler: function (e) {
+    vPush.add(e);
   }
 })

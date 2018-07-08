@@ -1,0 +1,106 @@
+.navigator {
+  background-color: #03a9f4;
+  height: 44px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: row;
+}
+.leftButton {
+  width: 50px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.leftButton > image {
+  width: 25px;
+  height: 25px;
+}
+.title {
+  height: 44px;
+  margin-right: 50px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title > text {
+  font-size: 16px;
+  color: #FFF;
+  font-weight: 500;
+}
+
+.container {
+  padding-top: 50px;
+}
+.card-box {
+  margin: 20px;
+  background-color: #FFF;
+  box-shadow: 0px 2px 0px 0px #DDD;
+  border-radius: 10px;
+  flex-direction: column;
+}
+
+.card-cell {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+}
+.cell-icon {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cell-icon > image {
+  width: 20px;
+  height: 20px;
+}
+.cell-title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.cell-title > text {
+  color: #333;
+  font-weight: 200;
+  font-size: 14px;
+}
+.cell-action {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cell-action > image {
+  width: 20px;
+  height: 20px;
+}
+
+.separator {
+  height: 1px;
+  border: none;
+  margin-left: 50px;
+  margin-right: 10px;
+  background-color: #EEE;
+}
+
+.loading {
+  animation: loading 800ms infinite ease;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}

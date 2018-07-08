@@ -1,0 +1,34 @@
+@import "libs/weToast/weToast.wxss";
+
+button {
+  padding: 0;
+  font-size: auto;
+  line-height: 26px;
+  text-align: left;
+  overflow: none;
+  border-radius: none;
+  box-sizing: none;
+  background: transparent;
+}
+button::after {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+.button-hover{
+  background: transparent;
+}
+
+.hover-class {
+  opacity: 0.8;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(135deg, #FFFFFF 0%, #EEEEEE 100%);
+}

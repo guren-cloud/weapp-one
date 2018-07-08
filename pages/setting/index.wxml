@@ -1,0 +1,77 @@
+<view class='background'></view>
+
+<!--导航栏  -->
+<form report-submit bindsubmit='addPushHandler'>
+  <button form-type='submit'>
+    <view class='navigator' style='padding-top:{{STATUSBAR_HEIGHT}}px;'>
+      <!--左边按钮  -->
+      <view class='leftButton' hover-class='hover-class' bindtap='goBackHandler'>
+        <image src='/assets/back.svg'></image>
+      </view>
+      <!--中间标题  -->
+      <view class='title'>
+        <text>设置</text>
+      </view>
+      <!--右边间隙  -->
+    </view>
+  </button>
+</form>
+
+<!-- 主题内容 -->
+<view class='container' style='padding-top: {{STATUSBAR_HEIGHT+44}}px;'>
+  <view class='card-box'>
+
+    <form report-submit bindsubmit='togglePushHandler'>
+      <button form-type='submit'>
+        <view class='card-cell' hover-class='hover-class'>
+          <view class='cell-icon'>
+            <image src='/assets/notify.svg'></image>
+          </view>
+          <view class='cell-title'>
+            <text>更新推送</text>
+          </view>
+          <view class='cell-action'>
+            <image src='/assets/load.svg' class='loading' wx:if="{{PUSH_LOADING}}"></image>
+            <switch color='#03a9f4' checked='{{PUSH_OPEN}}' wx:else></switch>
+          </view>
+        </view>
+      </button>
+    </form>
+  </view>
+
+  <view class='card-box'>
+    <!--开源声明  -->
+    <form report-submit bindsubmit='openSourceHandler'>
+      <button form-type='submit'>
+        <view class='card-cell' hover-class='hover-class'>
+          <view class='cell-icon'>
+            <image src='/assets/github.svg'></image>
+          </view>
+          <view class='cell-title'>
+            <text>开源声明</text>
+          </view>
+          <view class='cell-action'>
+            <image src='/assets/go.svg'></image>
+          </view>
+        </view>
+      </button>
+    </form>
+    <!--分隔符  -->
+    <view class='separator' />
+    <form report-submit bindsubmit='addPushHandler'>
+      <button form-type='submit' open-type='contact'>
+        <view class='card-cell' hover-class='hover-class'>
+          <view class='cell-icon'>
+            <image src='/assets/message.svg'></image>
+          </view>
+          <view class='cell-title'>
+            <text>建议反馈</text>
+          </view>
+          <view class='cell-action'>
+            <image src='/assets/go.svg'></image>
+          </view>
+        </view>
+      </button>
+    </form>
+  </view>
+</view>

@@ -1,0 +1,93 @@
+.navigator {
+  background-color: #03a9f4;
+  height: 44px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: row;
+}
+.leftButton {
+  width: 50px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.leftButton > image {
+  width: 25px;
+  height: 25px;
+}
+.title {
+  height: 44px;
+  margin-right: 50px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.title > text {
+  font-size: 16px;
+  color: #FFF;
+  font-weight: 500;
+}
+
+.container {
+  margin: 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+}
+.header > image {
+  width: 66px;
+  height: 66px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 20px -5px #DDD;
+}
+.header > text {
+  font-size: 16px;
+  color: #333;
+  padding: 10px 0px;
+  font-weight: 400;
+}
+.separator {
+  height: 1px;
+  background-color: #EEE;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0px;
+}
+.body > text {
+  line-height: 24px;
+  font-size: 14px;
+  color: #666;
+  font-weight: 200;
+}
+
+.b_title {
+  border-left: 3px solid #333;
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.b_title > text {
+  font-size: 14px;
+  color: #333;
+  font-weight: 400;
+}
+.b_data {
+  margin: 5px 0px 10px 0px;
+}
+.b_data > text {
+  font-size: 14px;
+  color: #666;
+  font-weight: 200;
+}

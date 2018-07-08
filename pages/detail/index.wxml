@@ -1,37 +1,84 @@
+<view class='background'></view>
+
 <!--导航栏  -->
-<view class='navigator' style='padding-top:{{STATUS_BAR_HEIGHT}}px;'>
-  <view class='navigator-back' bindtap='goBackHandler'>
-    <image src='/assets/back.svg'></image>
-  </view>
-  <view class='navigator-title'>
-    <text>{{data.title}}</text>
-  </view>
-</view>
+<form report-submit bindsubmit='addPushHandler'>
+  <button form-type='submit'>
+    <view class='navigator' style='padding-top:{{STATUSBAR_HEIGHT}}px;'>
+      <!--左边按钮  -->
+      <view class='leftButton' hover-class='hover-class' bindtap='goHomeHandler' wx:if="{{IS_SHARE_PAGE}}">
+        <image src='/assets/home.svg'></image>
+      </view>
+      <view class='leftButton' hover-class='hover-class' bindtap='goBackHandler' wx:else>
+        <image src='/assets/back.svg'></image>
+      </view>
+      <!--中间标题  -->
+      <view class='title'>
+        <text>{{data.title}}</text>
+      </view>
+      <!--右边间隙  -->
+    </view>
+  </button>
+</form>
 
 <!--顶部图片  -->
-<view class='top_image' bindtap='viewImageHandler' data-url='{{data.img_url}}'>
-  <image src='{{data.img_url}}' mode='widthFix'></image>
-  <view class='top_image_author'>
-    <text>{{data.picture_author}}</text>
-  </view>
-</view>
+<form report-submit bindsubmit='viewImageHandler' data-url='{{data.img_url}}'>
+  <button form-type='submit'>
+    <image src='{{data.img_url}}' class='header_image'></image>
+</button>
+</form>
 
-<view class='body-container'>
-  <!--时间  -->
-  <view class='date'>
-    <text class='day'>{{date[2]}}</text>
-    <text class='other'>{{date[1]}} / {{date[0]}}</text>
-  </view>
+<view class='container'>
+  <!--主体  -->
+  <view class='body'>
+    <!--摄影作者  -->
+    <view class='pic_author'>
+      <text>{{data.picture_author}}</text>
+    </view>
 
-  <!--主体内容  -->
-  <view class='body' bindlongtap='copyHandler'>
-    <text>{{data.content}}</text>
-  </view>
+    <!--时间  -->
+    <view class='date'>
+      <text class='day'>{{date[2]}}</text>
+      <text class='other'>{{date[1]}} / {{date[0]}}</text>
+    </view>
 
-  <!--文字作者信息  -->
-  <view class='author'>
-    <view></view>
-    <text>{{data.text_authors}}</text>
-    <view></view>
+    <!--主体内容  -->
+    <view class='content' bindlongpress='copyHandler'>
+      <text>{{data.content}}</text>
+    </view>
+
+    <!--文字作者信息  -->
+    <view class='author'>
+      <text>—— {{data.text_authors}}</text>
+    </view>
+
+    <!--按钮  -->
+    <view class='action'>
+      <view class='action-cell'>
+        <view class='cell-icon' style='background: linear-gradient(135deg, #ff8058 0%, #ff5722 100%);'>
+          <image src='/assets/heart.svg'></image>
+        </view>
+        <view class='cell-title'>
+          <text>喜欢</text>
+        </view>
+      </view>
+      <!--转发  -->
+      <view class='action-cell'>
+        <view class='cell-icon' style='background: linear-gradient(135deg, #46d2e4 0%, #00bcd4 100%);'>
+          <image src='/assets/zhuanfa.svg'></image>
+        </view>
+        <view class='cell-title'>
+          <text>转发</text>
+        </view>
+      </view>
+      <!--分享  -->
+      <view class='action-cell'>
+        <view class='cell-icon' style='background: linear-gradient(135deg, #73df77 0%, #4caf50 100%);'>
+          <image src='/assets/share.svg'></image>
+        </view>
+        <view class='cell-title'>
+          <text>分享</text>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

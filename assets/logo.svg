@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #333;
+        font-size: 88px;
+      }
+
+      .cls-2 {
+        font-family: SegoeUI, Segoe UI;
+      }
+
+      .cls-3 {
+        font-family: YuGothicUI-Regular, Yu Gothic UI;
+      }
+    </style>
+  </defs>
+  <g id="logo" transform="translate(-100 -100)">
+    <rect id="Rectangle_1" data-name="Rectangle 1" class="cls-1" width="300" height="300" transform="translate(100 100)"/>
+    <g id="Group_1" data-name="Group 1" transform="translate(0 -9)">
+      <text id="ONE" class="cls-2" transform="translate(250 306)"><tspan x="-88.344" y="0">ONE</tspan></text>
+      <text id="一" class="cls-3" transform="translate(250 248)"><tspan x="-44" y="0">一</tspan></text>
+    </g>
+  </g>
+</svg>
