@@ -1,6 +1,8 @@
 // pages/detail/index.js
 var INFO = wx.getSystemInfoSync();
-var { vPush } = getApp();
+var { vPush, FAV } = getApp();
+var weToast = require('../../libs/weToast/weToast.js');
+var TOAST;
 
 Page({
 
@@ -11,8 +13,14 @@ Page({
     data: {},
     date: [],
     _item: '',
+    // 是否已经喜欢
+    IS_LIKED: false,
     // 是否是点击分享进来的页面
     IS_SHARE_PAGE: false,
+    SCROLL_TOP: 0,
+    // 导航栏透明度
+    opacity: 0,
+    HEIGHT: INFO.windowHeight,
     STATUSBAR_HEIGHT: INFO.statusBarHeight
   },
 
@@ -20,12 +28,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    TOAST = new weToast(this);
     // 解析item参数
     var item = JSON.parse(decodeURIComponent(options.item));
     this.setData({
       data: item,
       date: item.date.split(' / '),
       _item: options.item,
+      IS_LIKED: FAV.check(item.id),
+      HEIGHT: wx.getSystemInfoSync().windowHeight,
       IS_SHARE_PAGE: getCurrentPages().length === 1
     })
   },
@@ -113,7 +124,55 @@ Page({
     })
   },
 
+  /**
+   * vPush添加formId
+   */
   addPushHandler: function (e) {
     vPush.add(e);
+  },
+
+  /**
+   * 返回顶部
+   */
+  toTopHandler: function (e) {
+    vPush.add(e);
+    this.setData({
+      SCROLL_TOP: 0
+    })
+  },
+
+  /**
+   * 滚动事件
+   */
+  scrollHandler: function (e) {
+    var { scrollTop } = e.detail;
+    // 计算透明度
+    var opacity = parseFloat(scrollTop / 250).toFixed(2);
+    if (opacity > 1) opacity = 1;
+    if (opacity < 0.1) opacity = 0;
+    // 这里设置<300是减少setData次数，节省内存
+    if (scrollTop < 300) {
+      this.setData({
+        opacity
+      })
+    }
+  },
+
+  /**
+   * 喜欢/取消
+   */
+  toggleLikeHandler: function () {
+    var { IS_LIKED, data } = this.data;
+    if (IS_LIKED) {
+      // 取消
+      FAV.del(data.id);
+      TOAST.info("不能被您欢真是遗憾！")
+    } else {
+      FAV.add(data);
+      TOAST.success("很高兴能得到您的喜欢！")
+    }
+    this.setData({
+      IS_LIKED: !IS_LIKED
+    })
   }
 })
