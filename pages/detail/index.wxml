@@ -50,9 +50,12 @@
       </view>
 
       <!--主体内容  -->
-      <view class='content' bindlongpress='copyHandler'>
-        <text>{{data.content}}</text>
-      </view>
+
+      <form report-submit bindsubmit='addPushHandler' bindlongpress='copyHandler'>
+        <button form-type='submit' class='content'>
+          <text>{{data.content}}</text>
+        </button>
+      </form>
 
       <!--文字作者信息  -->
       <view class='author'>
