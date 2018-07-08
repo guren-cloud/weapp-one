@@ -141,3 +141,9 @@
   color: #999;
   margin: 2px;
 }
+.action-cell-button {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}

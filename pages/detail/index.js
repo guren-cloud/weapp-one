@@ -161,7 +161,8 @@ Page({
   /**
    * 喜欢/取消
    */
-  toggleLikeHandler: function () {
+  toggleLikeHandler: function (e) {
+    vPush.add(e);
     var { IS_LIKED, data } = this.data;
     if (IS_LIKED) {
       // 取消
