@@ -1,5 +1,5 @@
 <!--导航栏  -->
-<form report-submit bindsubmit='addPushHandler'>
+<form report-submit bindsubmit='toTopHandler'>
   <button form-type='submit'>
     <view class='navigator' style='padding-top:{{STATUSBAR_HEIGHT}}px;background-color:rgba(3, 169, 244, {{opacity}});'>
       <!--左边按钮  -->
@@ -25,6 +25,7 @@
   bindscroll="scrollHandler"
   scroll-with-animation
   class="container"
+  scroll-top="{{SCROLL_TOP}}"
   wx:else>
   <!--顶部图片  -->
   <image src='{{first.img_url}}' class='header_image'></image>

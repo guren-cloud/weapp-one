@@ -11,6 +11,7 @@ Page({
     first: [],
     opacity: 0,
     LOADING: true,
+    SCROLL_TOP: 0,
     STATUSBAR_HEIGHT: INFO.statusBarHeight
   },
 
@@ -118,6 +119,16 @@ Page({
   gotoOpenSource: function () {
     wx.navigateTo({
       url: '/pages/setting/openSource',
+    })
+  },
+
+  /**
+   * 返回顶部
+   */
+  toTopHandler: function (e) {
+    vPush.add(e);
+    this.setData({
+      SCROLL_TOP: 0
     })
   }
 })
