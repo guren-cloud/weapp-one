@@ -87,7 +87,7 @@
           </button>
         </form>
         <!--分享  -->
-        <form report-submit bindsubmit='addPushHandler' class='action-cell'>
+        <form report-submit bindsubmit='shareHandler' class='action-cell'>
           <button form-type='submit' class='action-cell-button'>
             <view class='cell-icon' style='background: linear-gradient(135deg, #73df77 0%, #4caf50 100%);'>
               <image src='/assets/share.svg'></image>

@@ -167,13 +167,19 @@ Page({
     if (IS_LIKED) {
       // 取消
       FAV.del(data.id);
-      TOAST.info("不能被您欢真是遗憾！")
+      // TOAST.info("不能被您欢真是遗憾！")
     } else {
       FAV.add(data);
-      TOAST.success("很高兴能得到您的喜欢！")
+      // TOAST.success("很高兴能得到您的喜欢！")
     }
     this.setData({
       IS_LIKED: !IS_LIKED
     })
+  },
+
+  // 分享
+  shareHandler: function (e) {
+    vPush.add(e);
+    TOAST.info("图文分享功能开发中！");
   }
 })
