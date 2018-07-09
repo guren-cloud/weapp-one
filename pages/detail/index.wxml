@@ -101,3 +101,6 @@
     </view>
   </view>
 </scroll-view>
+
+<!--分享图片canvas  -->
+<canvas canvas-id="shareCanvas" style="width:414px;height:736px;opacity:0;position:fixed;left:-10000px;top:-10000px;"></canvas>

@@ -38,7 +38,9 @@ Page({
       IS_LIKED: FAV.check(item.id),
       HEIGHT: wx.getSystemInfoSync().windowHeight,
       IS_SHARE_PAGE: getCurrentPages().length === 1
-    })
+    });
+
+    this.SHARE_IMG = null;
   },
 
   /**
@@ -180,6 +182,102 @@ Page({
   // 分享
   shareHandler: function (e) {
     vPush.add(e);
-    TOAST.info("图文分享功能开发中！");
+
+    // 如果已经生成了，那么就显示
+    if (this.SHARE_IMG) {
+      return wx.previewImage({
+        urls: [this.SHARE_IMG],
+      })
+    }
+    TOAST.info('生成图片后长按保存分享！');
+    wx.showLoading({
+      title: '生成图片中',
+      mask: true
+    });
+
+    var ctx = wx.createCanvasContext('shareCanvas', this);
+    // ctx.save();
+    ctx.drawImage('/assets/share_tpl@2x.jpg', 0, 0, 414, 736);
+    // ctx.draw();
+
+    // 下载图片地址
+    var { img_url, content, text_authors } = this.data.data;
+    wx.getImageInfo({
+      src: img_url.replace('http://image.wufazhuce.com', 'https://weapp.safedog.cc'),
+      success: res => {
+        // 写入canvas
+        // var ctx = wx.createCanvasContext('shareCanvas', this);
+        ctx.drawImage(res.path, 0, 0, 414, 276);
+
+        //作者
+        ctx.setFontSize(20);
+        ctx.setFillStyle('#666666');
+        ctx.fillText('@'+text_authors, 20, 350);
+        // 文字
+        ctx.setFontSize(20);
+        ctx.setFillStyle("#333333");
+        ctx.setLineWidth(1);
+        var titleHeight = 10;
+        var canvasWidth = 370;
+        var initHeight = 400;
+
+        function drawText(ctx, str, initHeight, titleHeight, canvasWidth) {
+          var lineWidth = 0;
+          var lastSubStrIndex = 0; //每次开始截取的字符串的索引
+          for (let i = 0; i < str.length; i++) {
+            lineWidth += ctx.measureText(str[i]).width;
+            if (lineWidth > canvasWidth) {
+              ctx.fillText(str.substring(lastSubStrIndex, i), 15, initHeight);//绘制截取部分
+              initHeight += 30;//20为字体的高度
+              lineWidth = 0;
+              lastSubStrIndex = i;
+              titleHeight += 30;
+            }
+            if (i == str.length - 1) {//绘制剩余部分
+              ctx.fillText(str.substring(lastSubStrIndex, i + 1), 15, initHeight);
+            }
+          }
+          // 标题border-bottom 线距顶部距离
+          titleHeight = titleHeight + 10;
+          return titleHeight
+        }
+
+        titleHeight = drawText(ctx, content, initHeight, titleHeight, canvasWidth);
+
+        ctx.stroke();
+
+        ctx.draw();
+
+        // 导出图片
+        setTimeout(() => {
+          wx.hideLoading();
+
+          wx.canvasToTempFilePath({
+            canvasId: 'shareCanvas',
+            x: 0,
+            y: 0,
+            width: 414,
+            height: 736,
+            success: ret => {
+              this.SHARE_IMG = ret.tempFilePath;
+              // 判断是否是第一次分享，如果是，则显示帮助分享图片，否则只显示分享图片
+              var urls = [ret.tempFilePath];
+              var IS_FIRST_SHARE = parseInt(wx.getStorageSync('share_count') || 0);
+              if (IS_FIRST_SHARE < 3) {
+                urls.push('https://i.loli.net/2018/07/09/5b4341c50063e.jpg');
+                wx.setStorageSync('share_count', IS_FIRST_SHARE + 1);
+              }
+
+              wx.previewImage({
+                urls
+              });
+            }
+          }, this)
+        }, 1000);
+      },
+      fail: err => {
+        console.warn(err)
+      }
+    })
   }
 })
