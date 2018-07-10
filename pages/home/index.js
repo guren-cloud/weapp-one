@@ -92,7 +92,8 @@ Page({
     var { item } = e.currentTarget.dataset;
     if (!item) return console.log('[not item]');
     wx.navigateTo({
-      url: '/pages/detail/index?item=' + encodeURIComponent(JSON.stringify(item)),
+      // url: '/pages/detail/index?item=' + encodeURIComponent(JSON.stringify(item)),
+      url: '/pages/detail/index?id=' + item.id
     });
   },
 

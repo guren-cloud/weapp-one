@@ -2,6 +2,11 @@
 
 <view class='background'></view>
 
+<!--加载中  -->
+<view class='loading-container' wx:if="{{LOADING}}">
+  <image src='/assets/load.svg'></image>
+</view>
+
 <!--导航栏  -->
 <form report-submit bindsubmit='toTopHandler'>
   <button form-type='submit'>

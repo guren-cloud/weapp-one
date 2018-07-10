@@ -82,6 +82,22 @@ class API {
     if (data.date === new Date().format('yyyy / MM / dd')) return datas;
     return false;
   }
+
+  /**
+   * 根据ID获取单条数据
+   * 如果不存在，则重新获取
+   */
+  getDataById (id) {
+    return new Promise((RES, REJ) => {
+      this.getData().then(datas => {
+        var data = {};
+        datas.map(d => {
+          if (d.id === parseInt(id)) data = d;
+        });
+        return RES(data);
+      })
+    })
+  }
 }
 
 module.exports = new API();
