@@ -189,7 +189,10 @@ Page({
         urls: [this.SHARE_IMG],
       })
     }
-    TOAST.info('生成图片后长按保存分享！');
+    var IS_FIRST_SHARE = parseInt(wx.getStorageSync('share_count') || 0);
+    if (IS_FIRST_SHARE < 3) {
+      TOAST.info('生成图片后长按保存分享！');
+    }
     wx.showLoading({
       title: '生成图片中',
       mask: true
@@ -197,11 +200,14 @@ Page({
 
     var ctx = wx.createCanvasContext('shareCanvas', this);
     // ctx.save();
-    ctx.drawImage('/assets/share_tpl@2x.jpg', 0, 0, 414, 736);
+    ctx.drawImage('/assets/share_tpl2@2x.png', 0, 0, 414, 736);
     // ctx.draw();
 
+    var {
+      img_url, content, date,
+      text_authors, picture_author
+    } = this.data.data;
     // 下载图片地址
-    var { img_url, content, text_authors } = this.data.data;
     wx.getImageInfo({
       src: img_url.replace('http://image.wufazhuce.com', 'https://weapp.safedog.cc'),
       success: res => {
@@ -209,40 +215,89 @@ Page({
         // var ctx = wx.createCanvasContext('shareCanvas', this);
         ctx.drawImage(res.path, 0, 0, 414, 276);
 
-        //作者
-        ctx.setFontSize(20);
-        ctx.setFillStyle('#666666');
-        ctx.fillText('@'+text_authors, 20, 350);
-        // 文字
-        ctx.setFontSize(20);
-        ctx.setFillStyle("#333333");
-        ctx.setLineWidth(1);
-        var titleHeight = 10;
-        var canvasWidth = 370;
-        var initHeight = 400;
+        // box
+        ctx.drawImage('/assets/box@2x.png', 0, 174, 414, 562);
 
-        function drawText(ctx, str, initHeight, titleHeight, canvasWidth) {
-          var lineWidth = 0;
-          var lastSubStrIndex = 0; //每次开始截取的字符串的索引
-          for (let i = 0; i < str.length; i++) {
-            lineWidth += ctx.measureText(str[i]).width;
-            if (lineWidth > canvasWidth) {
-              ctx.fillText(str.substring(lastSubStrIndex, i), 15, initHeight);//绘制截取部分
-              initHeight += 30;//20为字体的高度
-              lineWidth = 0;
-              lastSubStrIndex = i;
-              titleHeight += 30;
-            }
-            if (i == str.length - 1) {//绘制剩余部分
-              ctx.fillText(str.substring(lastSubStrIndex, i + 1), 15, initHeight);
-            }
-          }
-          // 标题border-bottom 线距顶部距离
-          titleHeight = titleHeight + 10;
-          return titleHeight
+        // 文字
+        /**
+         * 渲染主体内容思路：
+         * 
+         * 首先，通过\r\n进行分割，获取到每一行。
+         * 然后，每一行进行每20*30个方格的计算，多出来的换到下一行，不满足的用空格填充
+         * 综上，一共获取到前三行（换行过长算作下一行）—
+         */
+
+
+        // 一行多少字
+        var NUMBER_OF_LINE = 15;
+        // 每个字多宽
+        var FONT_WIDTH = 22;
+        // 1. 进行分割，获取前三行
+        var c_temps = content.split('\r\n');
+        var line_counts = 0;
+        // 如果超过三行，那么只取前三行
+        if (c_temps.length > 3) {
+          c_temps = c_temps.slice(0, 3);
         }
 
-        titleHeight = drawText(ctx, content, initHeight, titleHeight, canvasWidth);
+        for (var i in c_temps) {
+          var c_data = c_temps[i];
+          // 计算要换多少行
+          var c_lines = parseInt(c_data.length / NUMBER_OF_LINE) + 1;
+          for (var j = 0; j < c_lines; j++) {
+            startDraw(c_data.slice(j * NUMBER_OF_LINE, (j + 1) * NUMBER_OF_LINE), line_counts);
+            line_counts++;
+          }
+        }
+
+        // 开始绘制文字
+        // text绘制的文字，line在第几行
+        function startDraw (text, line) {
+          // 如果line > 3，则忽略
+          // 因为line从0开始
+          // 如果最后一行，并且文字还是那么多，那么就省略号代替
+          if (line === 2 && text.length === NUMBER_OF_LINE) {
+            text = text.slice(0, 13) + '..';
+          } else if (line > 2) {
+            return;
+          }
+          var y = 450 + (line * 35); // 200为文字初始y坐标
+          console.log('[draw]', text, y);
+          ctx.setFontSize(20);
+          ctx.setTextAlign('center');
+          ctx.setFillStyle('#333333');
+          for (var i in text) {
+            var t = text[i];
+            // 开始绘制
+            ctx.fillText(t, 50 + (i * FONT_WIDTH), y);
+          }
+        }
+      
+        // 摄影
+        ctx.setFontSize(12);
+        ctx.setTextAlign('center');
+        ctx.setFillStyle('#888888');
+        ctx.fillText(picture_author, 414 / 2, 260);
+
+        //作者
+        ctx.setFontSize(16);
+        ctx.setTextAlign('center');
+        ctx.setFillStyle('#999999');
+        ctx.fillText(text_authors, 414 / 2, 590);
+
+        // 时间
+        var dates = date.split(' / ');
+        // 日
+        ctx.setFontSize(60);
+        ctx.setTextAlign('center');
+        ctx.setFillStyle('#666666');
+        ctx.fillText(dates[2], 414 / 2, 350);
+        // 月
+        ctx.setFontSize(18);
+        ctx.setTextAlign('center');
+        ctx.setFillStyle('#999999');
+        ctx.fillText(dates[1] + ' / ' + dates[0], 414 / 2, 390);
+
 
         ctx.stroke();
 
@@ -262,7 +317,6 @@ Page({
               this.SHARE_IMG = ret.tempFilePath;
               // 判断是否是第一次分享，如果是，则显示帮助分享图片，否则只显示分享图片
               var urls = [ret.tempFilePath];
-              var IS_FIRST_SHARE = parseInt(wx.getStorageSync('share_count') || 0);
               if (IS_FIRST_SHARE < 3) {
                 urls.push('https://i.loli.net/2018/07/09/5b4341c50063e.jpg');
                 wx.setStorageSync('share_count', IS_FIRST_SHARE + 1);

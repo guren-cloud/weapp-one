@@ -47,7 +47,7 @@
 }
 
 .body {
-  background-color: #FFF;
+  background-color: rgba(255, 255, 255, 0.9);
   box-shadow: 0px 5px 20px -5px #DDD;
   border-radius: 10px;
   margin: 20px;
@@ -57,12 +57,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  border-bottom: 1px dashed #EEE;
+  height: 38px;
+  /* border-bottom: 1px dashed #EEE; */
 }
 .pic_author > text {
   font-size: 12px;
-  color: #999;
+  color: #666;
   font-weight: 100;
 }
 .date {

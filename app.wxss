@@ -6,7 +6,7 @@ button {
   line-height: 26px;
   text-align: left;
   overflow: none;
-  border-radius: none;
+  border-radius: 0;
   box-sizing: none;
   background: transparent;
 }
