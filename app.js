@@ -4,9 +4,7 @@ var vPush = require('./libs/vpush-sdk/vPush.js');
 var FAV = require('./utils/fav.js');
 
 App({
-
   API,
-
   vPush: new vPush('AIZSD8qNRu'),
   FAV: new FAV(),
 

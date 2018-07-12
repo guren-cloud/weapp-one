@@ -67,7 +67,7 @@ Page({
     wx.setClipboardData({
       data: cp,
       success: () => {
-        TOAST.success(cp === 'h01ger' ? '作者微信已复制！' : '网址已经复制到剪贴板！')
+        TOAST.success(cp === 'hack_fish' ? '作者微信已复制！' : '网址已经复制到剪贴板！')
       }
     });
   }
