@@ -1,3 +1,10 @@
+/**
+ * 一ONE小程序
+ * 项目：https://github.com/safe-dog/one
+ * vPush：https://vpush.cloud
+ * 作者微信：hack_fish
+ */
+
 //app.js
 var API = require('./utils/api.js');
 var vPush = require('./libs/vpush-sdk/vPush.js');
@@ -5,7 +12,7 @@ var FAV = require('./utils/fav.js');
 
 App({
   API,
-  vPush: new vPush('vPush的应用ID'),
+  vPush: new vPush('vPush创建的应用ID'),
   FAV: new FAV(),
 
   /**
