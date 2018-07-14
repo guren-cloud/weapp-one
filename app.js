@@ -5,7 +5,7 @@ var FAV = require('./utils/fav.js');
 
 App({
   API,
-  vPush: new vPush('AIZSD8qNRu'),
+  vPush: new vPush('vPush的应用ID'),
   FAV: new FAV(),
 
   /**

@@ -11,6 +11,18 @@
 ## 截图
 ![一ONE截图](https://i.loli.net/2018/07/10/5b44c4b461383.jpg)
 
+## 配置
+本项目需要做一些配置才能正常运行。    
+1. 域名信息：request 合法域名，用于请求API和vPush-sdk
+https://api.hibai.cn
+https://vpush.safedog.cc
+
+2. 下载域名：downloadFile 合法域名，用于下载图片生成分享图
+https://weapp.safedog.cc
+https://vpush.safedog.cc
+
+然后，还需要把`app.js`中`new vPush()`的初始化ID更改为你在[vPush开发者控制台](https://dev.vpush.cloud)中创建的应用ID
+
 ## 体验
 微信中搜索[一ONE]    
 或者直接扫描程序码：
