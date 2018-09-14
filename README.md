@@ -52,4 +52,4 @@
 ## 帮助
 > 如果你遇到了解决不了的问题，或者想一起研究探讨更多有意思的产品，以及小程序开发相关的任何帮助，都可以通过扫描下方二维码加入我们，获取专业的技术支持！
 
-![](https://vpush.cloud/static/qr.png)
+![](https://guren.cloud/assets/qr/zsxq.jpg)
