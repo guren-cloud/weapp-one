@@ -1,8 +1,7 @@
 <view class='background'></view>
 
 <!--导航栏  -->
-<form report-submit bindsubmit='addPushHandler'>
-  <button form-type='submit'>
+<vpush-view bindclickHandler="toTopHandler">
     <view class='navigator' style='padding-top:{{STATUSBAR_HEIGHT}}px;'>
       <!--左边按钮  -->
       <view class='leftButton' hover-class='hover-class' bindtap='goBackHandler'>
@@ -14,12 +13,11 @@
       </view>
       <!--右边间隙  -->
     </view>
-  </button>
-</form>
+</vpush-view>
 
 <!-- 主题内容 -->
 <view class='container' style='padding-top: {{STATUSBAR_HEIGHT+44}}px;'>
-  <view class='card-box'>
+  <view class='card-box' wx:if="{{false}}">
 
     <form report-submit bindsubmit='togglePushHandler'>
       <button form-type='submit'>

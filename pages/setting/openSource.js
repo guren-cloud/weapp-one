@@ -1,4 +1,4 @@
-var { API, vPush } = getApp();
+var { API } = getApp();
 var INFO = wx.getSystemInfoSync();
 var weToast = require('../../libs/weToast/weToast.js');
 var TOAST;
@@ -54,7 +54,7 @@ Page({
   },
 
   addPushHandler: function (e) {
-    vPush.add(e);
+    // vPush.add(e);
   },
   goBackHandler: function () {
     wx.navigateBack({

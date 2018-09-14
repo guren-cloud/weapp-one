@@ -1,6 +1,6 @@
 // pages/detail/index.js
 var INFO = wx.getSystemInfoSync();
-var { vPush, FAV, API } = getApp();
+var { FAV, API } = getApp();
 var weToast = require('../../libs/weToast/weToast.js');
 var TOAST;
 
@@ -72,7 +72,6 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
   },
 
   /**
@@ -102,6 +101,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: this.data.data.title,
+      imageUrl: this.data.data.img_url,
       path: '/pages/detail/index?id=' + this.data.data.id
     }
   },
@@ -121,7 +121,6 @@ Page({
    * 预览图片
    */
   viewImageHandler: function (e) {
-    vPush.add(e);
     var { url } = e.currentTarget.dataset;
     wx.previewImage({
       urls: [url],
@@ -138,17 +137,9 @@ Page({
   },
 
   /**
-   * vPush添加formId
-   */
-  addPushHandler: function (e) {
-    vPush.add(e);
-  },
-
-  /**
    * 返回顶部
    */
   toTopHandler: function (e) {
-    vPush.add(e);
     this.setData({
       SCROLL_TOP: 0
     })
@@ -175,7 +166,6 @@ Page({
    * 喜欢/取消
    */
   toggleLikeHandler: function (e) {
-    vPush.add(e);
     var { IS_LIKED, data } = this.data;
     if (IS_LIKED) {
       // 取消
@@ -192,7 +182,6 @@ Page({
 
   // 分享
   shareHandler: function (e) {
-    vPush.add(e);
 
     // 如果已经生成了，那么就显示
     if (this.SHARE_IMG) {
@@ -205,7 +194,7 @@ Page({
       TOAST.info('生成图片后长按保存分享！');
     }
     wx.showLoading({
-      title: '生成图片中',
+      title: '稍等，马上好！',
       mask: true
     });
 
@@ -232,7 +221,7 @@ Page({
     }).then(() => new Promise(RES => {
       // 下载动态二维码
       wx.getImageInfo({
-        src: 'https://vpush.safedog.cc/qrcode/1one/' + id,
+        src: 'https://vcode.safedog.cc/p/b/v7SRefCbeg.png?scene=' + id,
         success: ret => {
           // 渲染二维码
           ctx.drawImage(ret.path, 167, 618, 80, 80);

@@ -1,6 +1,6 @@
 <!--导航栏  -->
-<form report-submit bindsubmit='toTopHandler'>
-  <button form-type='submit'>
+
+  <vpush-view bindclickHandler="toTopHandler">
     <view class='navigator' style='padding-top:{{STATUSBAR_HEIGHT}}px;background-color:rgba(3, 169, 244, {{opacity}});'>
       <!--左边按钮  -->
       <view class='leftButton' hover-class='hover-class' bindtap='gotoSetting'>
@@ -12,8 +12,7 @@
       </view>
       <!--右边间隙  -->
     </view>
-  </button>
-</form>
+  </vpush-view>
 
 <!--加载中  -->
 <view class='loading-container' wx:if="{{LOADING}}">
@@ -27,31 +26,42 @@
   class="container"
   scroll-top="{{SCROLL_TOP}}"
   wx:else>
-  <!--顶部图片  -->
-  <image src='{{first.img_url}}' class='header_image'></image>
+  <!-- 新版本顶部图片，滚动 -->
+  <swiper class='header_image' autoplay>
+    <swiper-item>
+      <image src='{{first.img_url}}' mode='widthFix' style='width:100%;'></image>
+    </swiper-item>
+    <swiper-item>
+      <image src='{{data[0].img_url}}' mode='widthFix' style='width:100%;'></image>
+    </swiper-item>
+    <swiper-item>
+      <image src='{{data[1].img_url}}' mode='widthFix' style='width:100%;'></image>
+    </swiper-item>
+  </swiper>
   <!--顶部文字  -->
   <view class='header_text'>
     <text>复杂的世界里，一个就够了</text>
   </view>
   <!--第一张卡片内容  -->
   <view class='first_card' hover-class='hover-class'>
-    <form report-submit bindsubmit='addPushHandler' data-item='{{first}}'>
-      <button form-type='submit'>
-          <!--vol标题  -->
-          <view class='first_title_box'>
-            <text>{{first.title}}</text>
-          </view>
-          <!--内容  -->
-          <view class='first_content_box'>
-            <text>{{first.content}}</text>
-          </view>
-          <!--作者  -->
-          <view class='first_author_box'>
-            <text>—— {{first.text_authors}}</text>
-          </view>
-      </button>
-    </form>
+    <vpush-nav url="/pages/detail/index?id={{first.id}}">
+      <!--vol标题  -->
+      <view class='first_title_box'>
+        <text>{{first.title}}</text>
+      </view>
+      <!--内容  -->
+      <view class='first_content_box'>
+        <text>{{first.content}}</text>
+      </view>
+      <!--作者  -->
+      <view class='first_author_box'>
+        <text>—— {{first.text_authors}}</text>
+      </view>
+    </vpush-nav>
   </view>
+
+  <!-- 广告 -->
+  <ad unit-id="adunit-3bed26eff42e9698"></ad>
 
   <!--其他内容  -->
   <view
@@ -59,24 +69,25 @@
     hover-class='hover-class'
     wx:for="{{data}}"
     wx:key="{{index}}">
-    <form report-submit bindsubmit='addPushHandler' data-item='{{item}}'>
-      <button form-type='submit'>
-        <!--标题  -->
-        <view class='other_title_box'>
-          <text>{{item.title}}</text>
-        </view>
-        <!--内容  -->
-        <view class='other_content_box'>
-          <text>{{item.content}}</text>
-        </view>
-        <!--作者  -->
-        <view class='other_author_box' wx:if="{{false}}">
-          <text>{{item.text_authors}}</text>
-        </view>
-      </button>
-    </form>
+    <vpush-nav url="/pages/detail/index?id={{item.id}}">
+      <!--标题  -->
+      <view class='other_title_box'>
+        <text>{{item.title}}</text>
+      </view>
+      <!--内容  -->
+      <view class='other_content_box'>
+        <text>{{item.content}}</text>
+      </view>
+      <!--作者  -->
+      <view class='other_author_box' wx:if="{{false}}">
+        <text>{{item.text_authors}}</text>
+      </view>
+    </vpush-nav>
   </view>
 
+  <!-- 底部广告 -->
+  <ad unit-id="adunit-af8f1bb84e7dc091"></ad>
+  
   <!--底部内容  -->
   <navigator url='/pages/setting/openSource' class='footer' hover-class='hover-class'>
     <text>开源声明</text>

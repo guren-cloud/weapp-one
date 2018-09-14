@@ -34,21 +34,21 @@
   <view class='b_title'>
     <text>项目</text>
   </view>
-  <view class='b_data' hover-class='hover-class' bindtap='copyHandler' data-cp='https://github.com/safe-dog/one'> 
-    <text>GitHub：<text style='color:#03a9f4;'>https://github.com/safe-dog/one</text></text>
+  <view class='b_data' hover-class='hover-class' bindtap='copyHandler' data-cp='https://github.com/guren-cloud/weapp-one'> 
+    <text style='color:#03a9f4;'>https://github.com/guren-cloud/weapp-one</text>
   </view>
 
   <view class='b_title'>
-    <text>推送</text>
+    <text>古人云</text>
   </view>
-  <view class='b_data' hover-class='hover-class' bindtap='copyHandler' data-cp='https://vpush.cloud'>
-    <text>本项目中使用了vPush推送模块。\nvPush，是一款专业高效实用的小程序推送平台。\n官网：<text style="color:#03a9f4">https://vpush.cloud</text></text>
+  <view class='b_data' hover-class='hover-class' bindtap='copyHandler' data-cp='https://guren.cloud'>
+    <text>本项目的推送、分享程序码功能来源于古人云小程序开发平台\n古人云 | 解决微信小程序开发的50%难点\n官网：<text style="color:#03a9f4">https://guren.cloud</text></text>
   </view>
 
   <view class='b_title'>
     <text>作者</text>
   </view>
   <view class='b_data' hover-class='hover-class' bindtap='copyHandler' data-cp='hack_fish'>
-    <text>作者是一名热爱编程，并擅长小程序、APP、网站开发以及UI设计的IT从业者。\n如果您有好的点子想法，或者有不错的项目合作，都欢迎联系我进行交流探讨！\n微信：<text style="color:#03a9f4">hack_fish</text>\n邮箱：<text style="color:#03a9f4">u@uyu.us</text></text>
+    <text>作者是一名热爱编程，并擅长小程序、APP、网站开发以及UI设计的IT从业者。\n如果您有好的点子想法，或者有不错的项目合作，都欢迎联系我进行交流探讨！\n微信：<text style="color:#03a9f4">hack_fish</text></text>
   </view>
 </view>

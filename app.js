@@ -1,18 +1,18 @@
 /**
  * 一ONE小程序
- * 项目：https://github.com/safe-dog/one
- * vPush：https://vpush.cloud
+ * 项目：https://github.com/guren-cloud/weapp-one
+ * 古人云小程序：https://guren.cloud
  * 作者微信：hack_fish
  */
 
 //app.js
 var API = require('./utils/api.js');
-var vPush = require('./libs/vpush-sdk/vPush.js');
+var vPush = require('./libs/vpush/_vpush.js');
 var FAV = require('./utils/fav.js');
 
 App({
   API,
-  vPush: new vPush('vPush创建的应用ID'),
+  vPush,
   FAV: new FAV(),
 
   /**

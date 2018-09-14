@@ -1,0 +1,18 @@
+button {
+  padding: 0;
+  font-size: auto;
+  line-height: 26px;
+  text-align: left;
+  overflow: none;
+  border-radius: 0;
+  box-sizing: none;
+  background: transparent;
+}
+button::after {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+.button-hover{
+  background: transparent;
+}

@@ -1,2 +1,6 @@
 {
+  "usingComponents": {
+    "vpush-view": "/libs/vpush/view",
+    "vpush-nav": "/libs/vpush/navigation"
+  }
 }

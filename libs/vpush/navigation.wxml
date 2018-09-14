@@ -1,0 +1,12 @@
+<!-- 
+navigation路由封装
+<vpush-nav url="/pages/home/index?id={{item.i}}">
+
+</vpush-nav>
+ -->
+
+<form report-submit bindsubmit='gotoHandler'>
+  <button form-type='submit'>
+    <slot />
+  </button>
+</form>

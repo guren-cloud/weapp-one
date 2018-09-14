@@ -1,4 +1,4 @@
-var { API, vPush } = getApp();
+var { API } = getApp();
 var INFO = wx.getSystemInfoSync();
 
 Page({
@@ -19,12 +19,12 @@ Page({
    */
   onLoad: function (options) {
     // 加载推送状态
-    vPush.isOpenPush(success => {
-      this.setData({
-        PUSH_LOADING: false,
-        PUSH_OPEN: success
-      })
-    })
+    // vPush.isOpenPush(success => {
+    //   this.setData({
+    //     PUSH_LOADING: false,
+    //     PUSH_OPEN: success
+    //   })
+    // })
   },
 
   /**
@@ -59,35 +59,35 @@ Page({
    * 添加vPush formId
    */
   addPushHandler: function (e) {
-    vPush.add(e, () => null);
+    // vPush.add(e, () => null);
   },
 
   /**
    * 开关推送
    */
   togglePushHandler: function (e) {
-    this.addPushHandler(e);
-    var { PUSH_LOADING, PUSH_OPEN } = this.data;
-    if (PUSH_LOADING) return console.log('loading push..');
-    this.setData({
-      PUSH_LOADING: true
-    });
+    // this.addPushHandler(e);
+    // var { PUSH_LOADING, PUSH_OPEN } = this.data;
+    // if (PUSH_LOADING) return console.log('loading push..');
+    // this.setData({
+    //   PUSH_LOADING: true
+    // });
 
-    if (PUSH_OPEN) {
-      vPush.closePush(success => {
-        this.setData({
-          PUSH_LOADING: false,
-          PUSH_OPEN: success ? false : PUSH_OPEN
-        })
-      })
-    } else {
-      vPush.openPush(success => {
-        this.setData({
-          PUSH_LOADING: false,
-          PUSH_OPEN: success ? true : PUSH_OPEN
-        })
-      })
-    }
+    // if (PUSH_OPEN) {
+    //   vPush.closePush(success => {
+    //     this.setData({
+    //       PUSH_LOADING: false,
+    //       PUSH_OPEN: success ? false : PUSH_OPEN
+    //     })
+    //   })
+    // } else {
+    //   vPush.openPush(success => {
+    //     this.setData({
+    //       PUSH_LOADING: false,
+    //       PUSH_OPEN: success ? true : PUSH_OPEN
+    //     })
+    //   })
+    // }
   },
 
   /**
@@ -103,7 +103,7 @@ Page({
    * 开源声明
    */
   openSourceHandler: function (e) {
-    this.addPushHandler(e);
+    // this.addPushHandler(e);
     wx.navigateTo({
       url: '/pages/setting/openSource',
     })

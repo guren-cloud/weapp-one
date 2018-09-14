@@ -167,7 +167,7 @@ page, .loading-container, .container {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 20px;
+  padding: 20px;
 }
 .footer > text {
   font-size: 12px;

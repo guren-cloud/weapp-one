@@ -1,0 +1,12 @@
+<!-- 
+view容器封装
+<vpush-view>
+  
+</vpush-view>
+ -->
+
+<form report-submit bindsubmit='vPushHandler'>
+  <button form-type='submit'>
+    <slot />
+  </button>
+</form>

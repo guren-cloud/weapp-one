@@ -8,24 +8,22 @@
 </view>
 
 <!--导航栏  -->
-<form report-submit bindsubmit='toTopHandler'>
-  <button form-type='submit'>
-    <view class='navigator' style='padding-top:{{STATUSBAR_HEIGHT}}px;background-color: rgba(3, 169, 244, {{opacity}});'>
-      <!--左边按钮  -->
-      <view class='leftButton' hover-class='hover-class' bindtap='goHomeHandler' wx:if="{{IS_SHARE_PAGE}}">
-        <image src='/assets/home.svg'></image>
-      </view>
-      <view class='leftButton' hover-class='hover-class' bindtap='goBackHandler' wx:else>
-        <image src='/assets/back.svg'></image>
-      </view>
-      <!--中间标题  -->
-      <view class='title'>
-        <text>{{data.title}}</text>
-      </view>
-      <!--右边间隙  -->
+<vpush-view bindclickHandler="toTopHandler">
+  <view class='navigator' style='padding-top:{{STATUSBAR_HEIGHT}}px;background-color: rgba(3, 169, 244, {{opacity}});'>
+    <!--左边按钮  -->
+    <view class='leftButton' hover-class='hover-class' bindtap='goHomeHandler' wx:if="{{IS_SHARE_PAGE}}">
+      <image src='/assets/home.svg'></image>
     </view>
-  </button>
-</form>
+    <view class='leftButton' hover-class='hover-class' bindtap='goBackHandler' wx:else>
+      <image src='/assets/back.svg'></image>
+    </view>
+    <!--中间标题  -->
+    <view class='title'>
+      <text>{{data.title}}</text>
+    </view>
+    <!--右边间隙  -->
+  </view>
+</vpush-view>
 
 <scroll-view
   scroll-y
@@ -34,11 +32,9 @@
   scroll-top="{{SCROLL_TOP}}"
   style='height:{{HEIGHT}}px;'>
   <!--顶部图片  -->
-  <form report-submit bindsubmit='viewImageHandler' data-url='{{data.img_url}}'>
-    <button form-type='submit'>
-      <image src='{{data.img_url}}' class='header_image'></image>
-  </button>
-  </form>
+  <vpush-view bindclickHandler="viewImageHandler" data-url="{{data.img_url}}">
+    <image src='{{data.img_url}}' class='header_image'></image>
+  </vpush-view>
 
   <view class='container'>
     <!--主体  -->
@@ -55,12 +51,11 @@
       </view>
 
       <!--主体内容  -->
-
-      <form report-submit bindsubmit='addPushHandler' bindlongpress='copyHandler'>
-        <button form-type='submit' class='content'>
+      <vpush-view>
+        <view  class="content">
           <text>{{data.content}}</text>
-        </button>
-      </form>
+        </view>
+      </vpush-view>
 
       <!--文字作者信息  -->
       <view class='author'>
@@ -70,19 +65,19 @@
       <!--按钮  -->
       <view class='action'>
 
-        <form report-submit bindsubmit='toggleLikeHandler' class='action-cell'>
-          <button form-type='submit' class='action-cell-button'>
+          <vpush-view bindclickHandler="toggleLikeHandler" class='action-cell'>
+            <view class="action-cell-button">
               <view class='cell-icon' style='background: linear-gradient(135deg, #ff8058 0%, #ff5722 100%);'>
                 <image src='{{IS_LIKED ? "/assets/heart_full.svg" : "/assets/heart.svg"}}'></image>
               </view>
               <view class='cell-title'>
                 <text>{{ IS_LIKED ? '取消' : '喜欢'}}</text>
               </view>
-          </button>
-        </form>
+            </view>
+          </vpush-view>
         <!--转发  -->
-        <form report-submit bindsubmit='addPushHandler' class='action-cell'>
-          <button form-type='submit' open-type='share' class='action-cell-button'>
+        <view class='action-cell'>
+          <button open-type='share' class='action-cell-button'>
             <view class='cell-icon' style='background: linear-gradient(135deg, #46d2e4 0%, #00bcd4 100%);'>
               <image src='/assets/zhuanfa.svg'></image>
             </view>
@@ -90,10 +85,10 @@
               <text>转发</text>
             </view>
           </button>
-        </form>
+        </view>
         <!--分享  -->
-        <form report-submit bindsubmit='shareHandler' class='action-cell'>
-          <button form-type='submit' class='action-cell-button'>
+        <view bindtap='shareHandler' class='action-cell'>
+          <button class='action-cell-button'>
             <view class='cell-icon' style='background: linear-gradient(135deg, #73df77 0%, #4caf50 100%);'>
               <image src='/assets/share.svg'></image>
             </view>
@@ -101,11 +96,12 @@
               <text>分享</text>
             </view>
           </button>
-        </form>
+        </view>
       </view>
     </view>
   </view>
 </scroll-view>
-
+  <!-- 广告 -->
+  <ad unit-id="adunit-c8050c335117026e"></ad>
 <!--分享图片canvas  -->
 <canvas canvas-id="shareCanvas" style="width:414px;height:736px;opacity:0;position:fixed;left:-10000px;top:-10000px;"></canvas>

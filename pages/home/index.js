@@ -1,5 +1,6 @@
-var { API, vPush } = getApp();
+var { API } = getApp();
 var INFO = wx.getSystemInfoSync();
+
 
 Page({
 
@@ -82,21 +83,6 @@ Page({
   
   },
 
-  /**
-   * 卡片点击事件
-   */
-  addPushHandler: function (e) {
-    // 插入vPush
-    vPush.add(e, () => null);
-    // 跳转详情
-    var { item } = e.currentTarget.dataset;
-    if (!item) return console.log('[not item]');
-    wx.navigateTo({
-      // url: '/pages/detail/index?item=' + encodeURIComponent(JSON.stringify(item)),
-      url: '/pages/detail/index?id=' + item.id
-    });
-  },
-
   scrollHandler: function (e) {
     var { scrollTop } = e.detail;
     // 计算透明度
@@ -127,7 +113,6 @@ Page({
    * 返回顶部
    */
   toTopHandler: function (e) {
-    vPush.add(e);
     this.setData({
       SCROLL_TOP: 0
     })
