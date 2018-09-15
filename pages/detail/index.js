@@ -221,7 +221,7 @@ Page({
     }).then(() => new Promise(RES => {
       // 下载动态二维码
       wx.getImageInfo({
-        src: 'https://vcode.safedog.cc/p/b/v7SRefCbeg.png?scene=' + id,
+        src: 'https://cloud.safedog.cc/vcode/d72hPRnUyJ?scene=' + id,
         success: ret => {
           // 渲染二维码
           ctx.drawImage(ret.path, 167, 618, 80, 80);
