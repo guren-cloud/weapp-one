@@ -1,0 +1,3 @@
+<view class="custom-class" style='padding-top:{{STATUS_HEIGHT+44}}px;'>
+  <slot />
+</view>

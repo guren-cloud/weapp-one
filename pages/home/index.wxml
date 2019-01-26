@@ -1,0 +1,112 @@
+<!-- 导航 -->
+<nav
+  title=""
+  leftIcon="/assets/menu.svg"
+  bind:lefthandler="openMenu"
+  bgColor="transparent"
+  dark
+></nav>
+
+<!-- 签到 -->
+<vpush-checkin />
+<!-- <vpush-hijack
+  width="80%"
+  height="60%"
+  top="20%"
+  left="10%"
+/> -->
+
+<!-- 菜单 -->
+<view class='menu-container menu-container-{{SHOW_MENU?"show":"hide"}}'>
+  <view class='{{SHOW_MENU?"menu-show":"menu-hide"}}'>
+    <image class='menu-bg' src='/assets/bg.svg' mode='aspectFill'></image>
+    <nav
+      title="一ONE"
+      bgColor="transparent"
+      leftIcon="/assets/close.svg"
+      bind:lefthandler="closeMenu"
+      dark
+    />
+
+    <view class="profile-box">
+      <!-- 头像 -->
+      <view class='profile-avatar'>
+        <open-data type="userAvatarUrl" class="profile-avatar-img"></open-data>
+        <button open-type='getUserInfo' bindgetuserinfo='getUserInfo' class="nickname-{{nickName?'login':'nologin'}}">
+          <text>{{nickName || '[点击登陆]'}}</text>
+        </button>
+      </view>
+      <!-- 菜单 -->
+      <view class='profile-menu'>
+        <!-- 推送开关 -->
+        <vpush-view bind:ClickHandler='togglePush' hover-class='hover-class' custom-class='profile-menu-item'>
+          <image src='/assets/menu/notice.svg'></image>
+          <text>每日推送</text>
+          <image src='/assets/menu/switch-{{OPEN_PUSH?"on":"off"}}.svg'></image>
+        </vpush-view>
+        <view class='separator'></view>
+        <!-- 联系 -->
+        <button hover-class='hover-class' open-type='contact' class='profile-menu-item'>
+          <image src='/assets/menu/contact.svg'></image>
+          <text>联系反馈</text>
+          <image src='/assets/menu/arrow-right.svg'></image>
+        </button>
+        <view class='separator'></view>
+        <!-- 关于 -->
+        <vpush-view hover-class='hover-class' bind:ClickHandler='gotoAbout' custom-class='profile-menu-item'>
+          <image src='/assets/menu/about.svg'></image>
+          <text>关于程序</text>
+          <image src='/assets/menu/arrow-right.svg'></image>
+        </vpush-view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view
+  class="bg"
+  style="background-image: url({{bg_img}});">
+  <view class="bg-shadow"></view>
+</view>
+
+<swiper
+  bindchange='changeHandler'>
+  <swiper-item
+    wx:for="{{data}}"
+    wx:key="{{item.id}}">
+    <one
+      image="{{item.img_url}}"
+      title="{{item.title}}"
+      content="{{item.content}}"
+      author="{{item.picture_author}}"
+      txt_author="{{item.text_authors}}"
+      pic_author="{{item.picture_author}}"
+      date="{{item.date}}"
+      bind:twoBottom="openMenu"
+    />
+  </swiper-item>
+</swiper>
+
+<view class='indicator'>
+  <view style='width:{{process}}%;background-color:{{process_color}};'></view>
+</view>
+
+
+<!-- 引导 -->
+<view class='helper' wx:if="{{SHOW_HELPER}}">
+  <view>
+    <text class='helper-title'>Hi，</text>
+    <text class="helper-title">欢迎体验新版本！</text>
+
+    <view class='helper-box'>
+      <text>左👈右👉滑动，切换每日卡片</text>
+      <text>上👆下👇滑动，查看卡片详情</text>
+      <text>长按🤚卡片，预览保存图片</text>
+      <text>点击右上角菜单(oOo)，添加收藏！</text>
+    </view>
+
+    <vpush-view custom-class='helper-btn' bind:ClickHandler="closeHelper">
+      <text style="color:#FFF">知道啦</text>
+    </vpush-view>
+  </view>
+</view>

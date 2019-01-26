@@ -1,0 +1,27 @@
+<nav
+  title="关于"
+  go-back
+  dark
+  bgColor="transparent"
+></nav>
+
+<image src='/assets/about-header.svg' mode='aspectFill' class='bg-header-img'></image>
+
+<container>
+  <!-- logo -->
+  <view class='logo'>
+    <image src='/assets/logo.png'></image>
+  </view>
+  <!-- 内容 -->
+  <view class='body'>
+    <view wx:for="{{data}}" wx:key="{{index}}">
+      <view class='title'>
+        <text>{{item.title}}</text>
+      </view>
+      <view class='data'>
+        <text>{{item.data}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- <image src='/assets/about.svg' mode='aspectFill' class='bg-img'></image> -->
+</container>

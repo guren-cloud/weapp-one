@@ -1,0 +1,68 @@
+<view
+  class='body'
+  bindtouchstart='touchStart'
+  bindtouchend='touchEnd'
+  bindtouchmove='touchMove'>
+  <view
+    class='card'
+    bindlongtap='previewImage'>
+    <view
+      class='bg'
+      style="background-image: url({{image}});{{SHOW_DATA?'filter1:blur(5px)':''}}">
+    </view>
+    <!-- 劫持组件 -->
+    <vpush-hijack
+      width="80%"
+      height="60%"
+      left="10%"
+      top="20%"
+      bind:clickHandler="toggleData"
+    />
+    <view
+      class='{{SHOW_DATA?"data-show":"data-hide"}}'
+      bindtap='toggleData'>
+      <!-- 分享按钮 -->
+      <button open-type='share' class='{{SHOW_DATA?"share-hide":"share-show"}}'>
+        <image src='/assets/share.svg'></image>
+      </button>
+      <view class="hide_box" wx:if="{{!SHOW_DATA}}">
+        <!-- 标题 -->
+        <view class='title'>
+          <text>{{title}}</text>
+        </view>
+        <!-- 一行内容 -->
+        <view class='content'>
+          <text>{{content}}</text>
+        </view>
+      </view>
+      <!-- 所有内容 -->
+      <view wx:else class="show_box">
+        <view class='show_header'>
+          <!-- 标题 -->
+          <view class='title'>
+            <text>{{title}}</text>
+          </view>
+          <!-- 图片作者 -->
+          <view class='content'>
+            <text>{{pic_author}}</text>
+          </view>
+        </view>
+        <view class="show-body">
+          <!-- 日期 -->
+          <view class='date'>
+            <text class='day'>{{date[12]+date[13]}}</text>
+            <text class='other'>{{date[7]+date[8]}} / {{date[0]+date[1]+date[2]+date[3]}}</text>
+          </view>
+          <!-- 内容 -->
+          <view class='all-content'>
+            <text>{{content}}</text>
+          </view>
+          <!-- 作者 -->
+          <view class='txt-author'>
+            <text>—— {{txt_author}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

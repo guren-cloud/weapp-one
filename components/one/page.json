@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "vpush-hijack": "/components/vpush-pro-sdk/components/hijack"
+  }
+}

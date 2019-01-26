@@ -1,0 +1,7 @@
+{
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "nav": "/components/fish_ui/nav/index",
+    "container": "/components/fish_ui/nav/container"
+  }
+}

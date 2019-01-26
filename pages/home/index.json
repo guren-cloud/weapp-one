@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "one": "/components/one/page",
+    "nav": "/components/fish_ui/nav/index",
+    "container": "/components/fish_ui/nav/container",
+    "vpush-view": "/components/vpush-pro-sdk/components/view",
+    "vpush-checkin": "/components/vpush-pro-sdk/components/checkin",
+    "vpush-hijack": "/components/vpush-pro-sdk/components/hijack"
+  }
+}
