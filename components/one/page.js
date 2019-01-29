@@ -13,6 +13,7 @@ Component({
     content: String,
     pic_author: String,
     txt_author: String,
+    line_content: String,
     date: String
   },
 

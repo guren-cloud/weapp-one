@@ -32,7 +32,7 @@
         </view>
         <!-- 一行内容 -->
         <view class='content'>
-          <text>{{content}}</text>
+          <text>{{line_content}}</text>
         </view>
       </view>
       <!-- 所有内容 -->

@@ -8,7 +8,7 @@
 ></nav>
 
 <!-- 签到 -->
-<vpush-checkin />
+<vpush-checkin wx:if="{{!SHOW_HELPER}}" />
 <!-- <vpush-hijack
   width="80%"
   height="60%"
@@ -78,6 +78,7 @@
       image="{{item.img_url}}"
       title="{{item.title}}"
       content="{{item.content}}"
+      line_content="{{item.line_content}}"
       author="{{item.picture_author}}"
       txt_author="{{item.text_authors}}"
       pic_author="{{item.picture_author}}"

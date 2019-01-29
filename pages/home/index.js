@@ -123,8 +123,15 @@ Page({
             if (currentData && d.id === currentData.id) return;
             new_data.push(d);
           });
+          // 获取内容的第一行
+          let new_data_parsed = [];
+          new_data.map(d => {
+            let c = d.content.split('\r\n')[0].split('\r')[0].split('\n')[0];
+            d['line_content'] = c;
+            new_data_parsed.push(d);
+          });
           this.setData({
-            data: new_data,
+            data: new_data_parsed,
             loading: false,
             bg_img: new_data[0].img_url
           })
