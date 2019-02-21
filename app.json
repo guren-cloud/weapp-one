@@ -10,5 +10,8 @@
     "navigationBarTitleText": "一ONE",
     "navigationBarTextStyle": "white",
     "navigationStyle": "custom"
-  }
+  },
+  "navigateToMiniProgramAppIdList": [
+    "wx8abaf00ee8c3202e"
+  ]
 }

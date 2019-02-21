@@ -1,4 +1,4 @@
-const { vPush } = getApp();
+const { vPush, TUCAO_ID } = getApp();
 
 const HELPER_KEY = 'HELPER_20181223';
 
@@ -16,7 +16,8 @@ Page({
     SHOW_MENU: false,
     OPEN_PUSH: true,
     SHOW_HELPER: false,
-    nickName: null
+    nickName: null,
+    TUCAO_ID
   },
 
   closeHelper: function () {
@@ -36,6 +37,15 @@ Page({
   gotoAbout: function () {
     wx.navigateTo({
       url: '/pages/about/index',
+    })
+  },
+
+  gotoTucao: function () {
+    wx.navigateToMiniProgram({
+      appId: 'wx8abaf00ee8c3202e',
+      extraData: {
+        id: TUCAO_ID
+      }
     })
   },
 
@@ -87,6 +97,11 @@ Page({
           nickName: ret.userInfo.nickName
         });
       }
+    });
+
+    // 设置吐槽ID
+    this.setData({
+      TUCAO_ID
     });
 
     // 检查是否已经展示引导

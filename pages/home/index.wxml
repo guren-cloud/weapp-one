@@ -45,8 +45,14 @@
           <image src='/assets/menu/switch-{{OPEN_PUSH?"on":"off"}}.svg'></image>
         </vpush-view>
         <view class='separator'></view>
+        <!-- 新版本的反馈：跳转到吐槽小程序  -->
+        <vpush-view wx:if="{{TUCAO_ID}}" hover-class='hover-class' bind:ClickHandler='gotoTucao' custom-class='profile-menu-item'>
+          <image src='/assets/menu/contact.svg'></image>
+          <text>联系反馈</text>
+          <image src='/assets/menu/arrow-right.svg'></image>
+        </vpush-view>
         <!-- 联系 -->
-        <button hover-class='hover-class' open-type='contact' class='profile-menu-item'>
+        <button wx:else hover-class='hover-class' open-type='contact' class='profile-menu-item'>
           <image src='/assets/menu/contact.svg'></image>
           <text>联系反馈</text>
           <image src='/assets/menu/arrow-right.svg'></image>
